@@ -1,7 +1,6 @@
 // Add imports above this line
 import { galleryItems } from './gallery-items';
 // Change code below this line
-
 console.log(galleryItems);
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
@@ -19,19 +18,9 @@ function createListItem(items) {
     )
     .join('');
 }
-
 galleryListItem.insertAdjacentHTML('beforeend', createList);
-galleryListItem.addEventListener('click', largePicture);
 
 let gallery = new SimpleLightbox('.gallery a', {
   captionPosition: 'bottom',
   captionDelay: 250,
 });
-
-function largePicture(e) {
-  e.preventDefault();
-
-  if (!e.target.classList.contains('gallery__image')) return;
-
-  gallery.on('show.simplelightbox');
-}

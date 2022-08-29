@@ -10,8 +10,8 @@ const MESSAGE = 'message';
 const USER_DATA_OBJECT = 'feedback-form-state';
 
 form.addEventListener('submit', onSubmitForm);
-refs.inputForm.addEventListener('input', throttle(onInputForm, 500));
-refs.textAreaForm.addEventListener('input', throttle(onTextAreaForm, 500));
+// refs.inputForm.addEventListener('input', throttle(onInputForm, 500));
+// refs.textAreaForm.addEventListener('input', throttle(onTextAreaForm, 500));
 
 let emailValue;
 let messageValue;
