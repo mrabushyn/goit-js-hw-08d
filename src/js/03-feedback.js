@@ -12,16 +12,6 @@ form.addEventListener('input', throttle(onInputForm, 500));
 let userData = {};
 const USER_DATA_KEY = 'feedback-form-state';
 
-function onSubmitForm(evt) {
-  console.log(localStorage);
-  console.log(parseUserData); // показує після перезагрузки сторінки
-  console.log(userData); // показує без перезагрузки сторінки
-
-  evt.preventDefault();
-  localStorage.removeItem(USER_DATA_KEY);
-  evt.currentTarget.reset();
-}
-
 function onInputForm(evt) {
   userData = {
     email: refs.inputForm.value,
@@ -31,26 +21,39 @@ function onInputForm(evt) {
     userData.email = refs.inputForm.value;
   }
   userData.message = refs.textAreaForm.value;
-
+  console.log(userData); 
 localStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
-// return userData;
 }
 
-console.log(localStorage)
-
-
+function onSubmitForm(evt) {
+  evt.preventDefault();
   const stringUserData = localStorage.getItem(USER_DATA_KEY);
   const parseUserData = JSON.parse(stringUserData);
-  if (stringUserData) {
-    refs.inputForm.value = parseUserData.email;
-    refs.textAreaForm.value = parseUserData.message;
-  }
+  console.log(parseUserData); 
+  localStorage.removeItem(USER_DATA_KEY);
+  evt.currentTarget.reset();
+}
+
+function saveDataPageReload () {
+  const dataStoragePageDafault = localStorage.getItem(USER_DATA_KEY);
+  const parsedDataStoragePageDafault = JSON.parse(dataStoragePageDafault);
+  if (dataStoragePageDafault) {
+    refs.inputForm.value = parsedDataStoragePageDafault.email;
+    refs.textAreaForm.value = parsedDataStoragePageDafault.message;
+  }}
 
 
 
-// sdf@sd.h
 
 
+
+
+
+
+
+
+
+//_____________________________________________last try_____________________________________________________________
 // import throttle from 'lodash.throttle';
 
 // const form = document.querySelector('.feedback-form');
