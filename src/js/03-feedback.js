@@ -5,22 +5,23 @@ const refs = {
   inputForm: form.children[0].children[0],
   textAreaForm: form.children[1].children[0],
 };
+const USER_DATA_KEY = 'feedback-form-state';
+const emailValue = refs.inputForm;
+const messageValue = refs.textAreaForm;
+let userData = {};
 
 form.addEventListener('submit', onSubmitForm);
 form.addEventListener('input', throttle(onInputForm, 500));
 
-let userData = {};
-const USER_DATA_KEY = 'feedback-form-state';
-
 function onInputForm(evt) {
   userData = {
-    email: refs.inputForm.value,
-    message: refs.textAreaForm.value,
+    email: emailValue.value,
+    message: messageValue.value,
   };
-  if (evt.target.name === refs.inputForm.name) {
-    userData.email = refs.inputForm.value;
+  if (evt.target.name === emailValue.name) {
+    userData.email = emailValue.value;
   }
-  userData.message = refs.textAreaForm.value;
+  userData.message = messageValue.value;
   console.log(userData); 
 localStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
 }
@@ -38,11 +39,11 @@ function saveDataPageReload () {
   const dataStoragePageDafault = localStorage.getItem(USER_DATA_KEY);
   const parsedDataStoragePageDafault = JSON.parse(dataStoragePageDafault);
   if (dataStoragePageDafault) {
-    refs.inputForm.value = parsedDataStoragePageDafault.email;
-    refs.textAreaForm.value = parsedDataStoragePageDafault.message;
+    emailValue.value = parsedDataStoragePageDafault.email;
+    messageValue.value = parsedDataStoragePageDafault.message;
   }}
 
-
+saveDataPageReload();
 
 
 
