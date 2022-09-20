@@ -20,7 +20,7 @@ function createListItem(items) {
 }
 galleryListItem.insertAdjacentHTML('beforeend', createList);
 
-let gallery = new SimpleLightbox('.gallery a', {
+new SimpleLightbox('.gallery a', {
   captionPosition: 'bottom',
   captionDelay: 250,
 });
